@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cardgame"
+    }
+  },
+  "defaultProject": "cardgame",
+  "cli": {
+    "analytics": "86162791-3986-442c-96ae-175438063c0d"
+  }
 }
