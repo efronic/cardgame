@@ -4,22 +4,23 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 export interface AppState {
   getCards: Card[];
   getFlippedCards: Card[];
-  currentPlayer: string;
+  currentPlayer: boolean;
+  firstPlayerScore: number;
+  secondPlayerScore: number;
   flipped: boolean;
   error: string;
 }
 export const initialState: AppState = {
   getCards: [],
   getFlippedCards: [],
-  currentPlayer: 'Player 1',
+  currentPlayer: false,
+  firstPlayerScore: 0,
+  secondPlayerScore: 0,
   flipped: false,
   error: '',
 };
-const getState = createFeatureSelector<AppState>('appstate');
-export const getCards = createSelector(
-  getState,
-  (state) => state.getCards
-);
+const getState = createFeatureSelector<AppState>('cardGame');
+export const getCards = createSelector(getState, (state) => state.getCards);
 export const getFlippedCards = createSelector(
   getState,
   (state) => state.getFlippedCards
@@ -28,11 +29,13 @@ export const currentPlayer = createSelector(
   getState,
   (state) => state.currentPlayer
 );
-export const flipped = createSelector(
+export const firstPlayerScore = createSelector(
   getState,
-  (state) => state.flipped
+  (state) => state.firstPlayerScore
 );
-export const error = createSelector(
+export const secondPlayerScore = createSelector(
   getState,
-  (state) => state.error
+  (state) => state.secondPlayerScore
 );
+export const flipped = createSelector(getState, (state) => state.flipped);
+export const error = createSelector(getState, (state) => state.error);

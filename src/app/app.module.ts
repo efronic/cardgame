@@ -7,20 +7,24 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
+import { CardgridComponent } from './cardgrid/cardgrid.component';
+import { CardService } from './services/cardservice';
+import { AppReducer } from './state/app.reducer';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CardgridComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
+    StoreModule.forFeature('cardGame', AppReducer),
     StoreDevtoolsModule.instrument({
-      name: 'Precision Forms DevTools',
+      name: 'Card Game DevTools',
       maxAge: 50,
       logOnly: environment.production,
     }),
   ],
-  providers: [],
+  providers: [CardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
