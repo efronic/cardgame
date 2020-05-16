@@ -1,1 +1,10 @@
-<app-cardgrid [cards]="cards$ | async" (flipped)="flipped($event)"></app-cardgrid>
+<app-players
+  [player1Score]="player1Score$ | async"
+  [player2Score]="player2Score$ | async"
+  [playersTurn]="playersTurn$ | async"
+></app-players>
+<app-cardgrid
+  [cards]="cards$ | async"
+  [clickAllowed]="clickAllowed$ | async"
+  (flipped)="flipped($event)"
+></app-cardgrid>

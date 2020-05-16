@@ -10,9 +10,10 @@ import { environment } from 'src/environments/environment';
 import { CardgridComponent } from './cardgrid/cardgrid.component';
 import { CardService } from './services/cardservice';
 import { AppReducer } from './state/app.reducer';
+import { PlayersComponent } from './players/players.component';
 
 @NgModule({
-  declarations: [AppComponent, CardgridComponent],
+  declarations: [AppComponent, CardgridComponent, PlayersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

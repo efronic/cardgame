@@ -28,12 +28,15 @@ export class CardService {
     const cards: Array<Card> = this.cardNumbers.map((n) => ({
       name: n,
       flipped: false,
+      currentCard: false,
+
       url: `https://i.picsum.photos/id/${n.toString()}/150/200.jpg`,
     }));
     var temp = cards.concat(cards).map((c, i) => ({
       id: i,
       name: c.name,
       flipped: c.flipped,
+      currentCard: false,
       url: c.url,
     }));
     temp.pop();

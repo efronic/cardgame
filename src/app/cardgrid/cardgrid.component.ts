@@ -8,6 +8,7 @@ import { Card } from '../models/card';
 })
 export class CardgridComponent {
   @Input() cards: Card[];
+  @Input() clickAllowed: boolean;
   @Output() flipped = new EventEmitter<Card>();
   /**
    *
@@ -16,7 +17,7 @@ export class CardgridComponent {
     console.log('this.cards from presentation ', this.cards);
   }
   flip(card: Card): void {
-    if (card.flipped) {
+    if (card.flipped || !this.clickAllowed) {
       return;
     } else {
       this.flipped.emit(card);

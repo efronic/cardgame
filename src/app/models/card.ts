@@ -3,4 +3,5 @@ export interface Card {
   flipped: boolean;
   name: number;
   url?: string;
+  currentCard: boolean;
 }

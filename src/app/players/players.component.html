@@ -1,0 +1,10 @@
+<div>
+  <p *ngIf="this.playersTurn">Player 1: {{ player1Score }}</p>
+  <p *ngIf="!this.playersTurn">
+    <strong>Player 1: {{ player1Score }}</strong>
+  </p>
+  <p *ngIf="!this.playersTurn">Player 2: {{ player2Score }}</p>
+  <p *ngIf="this.playersTurn">
+    <strong>Player 2: {{ player2Score }}</strong>
+  </p>
+</div>

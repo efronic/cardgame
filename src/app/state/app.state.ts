@@ -3,39 +3,54 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface AppState {
   getCards: Card[];
-  getFlippedCards: Card[];
-  currentPlayer: boolean;
-  firstPlayerScore: number;
-  secondPlayerScore: number;
-  flipped: boolean;
-  error: string;
+  // getFlippedCards: Card[];
+  getCurrentPlayer: boolean;
+  getNumberOfFlippedCards: number;
+  getFirstCardId: number;
+  getFirstPlayerScore: number;
+  getSecondPlayerScore: number;
+  getClickAllowed: boolean;
+  getError: string;
 }
 export const initialState: AppState = {
   getCards: [],
-  getFlippedCards: [],
-  currentPlayer: false,
-  firstPlayerScore: 0,
-  secondPlayerScore: 0,
-  flipped: false,
-  error: '',
+  // getFlippedCards: [],
+  getCurrentPlayer: false,
+  getNumberOfFlippedCards: 0,
+  getFirstCardId: 0,
+  getFirstPlayerScore: 0,
+  getSecondPlayerScore: 0,
+  getClickAllowed: true,
+  getError: '',
 };
 const getState = createFeatureSelector<AppState>('cardGame');
 export const getCards = createSelector(getState, (state) => state.getCards);
-export const getFlippedCards = createSelector(
+// export const getFlippedCards = createSelector(
+//   getState,
+//   (state) => state.getFlippedCards
+// );
+export const getCurrentPlayer = createSelector(
   getState,
-  (state) => state.getFlippedCards
+  (state) => state.getCurrentPlayer
 );
-export const currentPlayer = createSelector(
+export const getFirstCardId = createSelector(
   getState,
-  (state) => state.currentPlayer
+  (state) => state.getFirstCardId
 );
-export const firstPlayerScore = createSelector(
+export const getNumberOfFlippedCards = createSelector(
   getState,
-  (state) => state.firstPlayerScore
+  (state) => state.getNumberOfFlippedCards
 );
-export const secondPlayerScore = createSelector(
+export const getFirstPlayerScore = createSelector(
   getState,
-  (state) => state.secondPlayerScore
+  (state) => state.getFirstPlayerScore
 );
-export const flipped = createSelector(getState, (state) => state.flipped);
-export const error = createSelector(getState, (state) => state.error);
+export const getSecondPlayerScore = createSelector(
+  getState,
+  (state) => state.getSecondPlayerScore
+);
+export const getClickAllowed = createSelector(
+  getState,
+  (state) => state.getClickAllowed
+);
+export const getError = createSelector(getState, (state) => state.getError);
