@@ -1,30 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 import { Card } from './models/card';
-import { CardService } from './services/cardservice';
+import { CardService } from './services/card.service';
+import { DialogService } from './services/dialog.service';
 import * as fromActions from './state/app.actions';
 import * as fromState from './state/app.state';
+import { isNullorUndefined } from './helpers/revealer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  cardNumbers: number[] = [];
+export class AppComponent implements OnInit, OnDestroy {
+  // cardNumbers: number[] = [];
+  componentActive = true;
   cards$: Observable<Card[]>;
+  winner$: Observable<boolean> | Observable<null>;
+  // winner: boolean;
   playersTurn$: Observable<boolean>;
   player1Score$: Observable<number>;
   player2Score$: Observable<number>;
   clickAllowed$: Observable<boolean>;
   cards: Card[];
-  componentActive = true;
   imgUrl = 'https://i.picsum.photos/id/';
   title = 'Card Game';
   constructor(
     private store: Store<fromState.AppState>,
-    private cardService: CardService
+    private cardService: CardService,
+    private dialogService: DialogService
   ) {}
   ngOnInit(): void {
     this.cards = this.cardService.getGameCards();
@@ -32,6 +38,10 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(new fromActions.Load(this.cards));
     this.cards$ = this.store.pipe(select(fromState.getCards));
+    this.winner$ = this.store.pipe(select(fromState.getWinner));
+    // this.winner$
+    //   .pipe(takeWhile(() => this.componentActive))
+    //   .subscribe((p?: boolean) => (this.winner = p));
     this.playersTurn$ = this.store.pipe(select(fromState.getCurrentPlayer));
     this.player1Score$ = this.store.pipe(select(fromState.getFirstPlayerScore));
     this.player2Score$ = this.store.pipe(
@@ -39,6 +49,24 @@ export class AppComponent implements OnInit {
     );
     this.clickAllowed$ = this.store.pipe(select(fromState.getClickAllowed));
     this.cards$.subscribe((a) => console.log(a));
+    this.store
+      .pipe(
+        select(fromState.getWinner),
+        takeWhile(() => this.componentActive)
+      )
+      .subscribe((winner?: boolean) => {
+        if (!isNullorUndefined(winner)) {
+          this.openDialog(winner).subscribe((result) => {
+            if (result) {
+              console.log('Play again!');
+
+              this.store.dispatch(
+                new fromActions.Load(this.cardService.getGameCards())
+              );
+            }
+          });
+        }
+      });
   }
   flipped(card: Card): void {
     card = { ...card };
@@ -49,5 +77,11 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.store.dispatch(new fromActions.FinalizeToggle());
     }, 800);
+  }
+  openDialog(winner: boolean): Observable<any> {
+    return this.dialogService.confirm(winner);
+  }
+  ngOnDestroy() {
+    this.componentActive = false;
   }
 }

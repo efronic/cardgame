@@ -10,4 +10,5 @@ export class PlayersComponent {
   @Input() player1Score: number;
   @Input() player2Score: number;
   @Input() playersTurn: boolean;
+  @Input() winner?: boolean;
 }

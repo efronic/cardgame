@@ -6,6 +6,7 @@ export class CardService {
 
   randomize() {
     var max = 50;
+    this.cardNumbers = [];
     // const min = 20;
     for (var i = 0; i < 8; i++) {
       var temp = Math.floor(Math.random() * max);
