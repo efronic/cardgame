@@ -1,7 +1,9 @@
 <h2 mat-dialog-title>Congratulations!</h2>
 <div mat-dialog-content>
-  <p *ngIf="!!data.winner && data.winner">Player 2 won the game!</p>
-  <p *ngIf="!!data.winner && !data.winner">Player 1 won the game!</p>
+  <div *ngIf="data.winner != null && data.winner != undefined">
+    <p *ngIf="data.winner">Player 2 won the game!</p>
+    <p *ngIf="!data.winner">Player 1 won the game!</p>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="primary" [mat-dialog-close]="true">
