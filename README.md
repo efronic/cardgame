@@ -1,6 +1,12 @@
 # Cardgame
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+
+## Prerequisites
+
+Install the latest version of Node from [here] (https://nodejs.org/).
+Run `npm install -g @angular/cli` to install/update latest version of Angular CLI.
+Once downloaded the codebase, run `npm install` to install all the dependencies and node modules. 
 
 ## Development server
 

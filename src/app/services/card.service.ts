@@ -5,7 +5,7 @@ export class CardService {
   cardNumbers: number[] = [];
 
   randomize() {
-    var max = 50;
+    var max = 80;
     this.cardNumbers = [];
     for (var i = 0; i < 8; i++) {
       var temp = Math.floor(Math.random() * max);
@@ -21,7 +21,6 @@ export class CardService {
       name: n,
       flipped: false,
       currentCard: false,
-
       url: `https://i.picsum.photos/id/${n.toString()}/150/200.jpg`,
     }));
     var temp = cards.concat(cards).map((c, i) => ({

@@ -1,6 +1,9 @@
-  <div class="grid-container">
-    <div *ngFor="let card of cards" class="grid-item" (click)="flip(card)">
-      <img *ngIf="card.flipped" [src]="card.url" />
-      <img *ngIf="!card.flipped" src="assets/flip.jpg" />
-    </div>
+<div class="grid-container">
+  <div *ngFor="let card of cards" class="grid-item" (click)="flip(card)">
+    <img
+      [ngClass]="{ inVisible: !card.flipped }"
+      [src]="card.url"
+    />
+    <img *ngIf="!card.flipped" src="assets/flip.jpg" />
   </div>
+</div>
