@@ -15,11 +15,9 @@ import { isNullorUndefined } from './helpers/revealer';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  // cardNumbers: number[] = [];
   componentActive = true;
   cards$: Observable<Card[]>;
   winner$: Observable<boolean> | Observable<null>;
-  // winner: boolean;
   playersTurn$: Observable<boolean>;
   player1Score$: Observable<number>;
   player2Score$: Observable<number>;
@@ -34,21 +32,16 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit(): void {
     this.cards = this.cardService.getGameCards();
-    console.log('this.cards', this.cards);
 
     this.store.dispatch(new fromActions.Load(this.cards));
     this.cards$ = this.store.pipe(select(fromState.getCards));
     this.winner$ = this.store.pipe(select(fromState.getWinner));
-    // this.winner$
-    //   .pipe(takeWhile(() => this.componentActive))
-    //   .subscribe((p?: boolean) => (this.winner = p));
     this.playersTurn$ = this.store.pipe(select(fromState.getCurrentPlayer));
     this.player1Score$ = this.store.pipe(select(fromState.getFirstPlayerScore));
     this.player2Score$ = this.store.pipe(
       select(fromState.getSecondPlayerScore)
     );
     this.clickAllowed$ = this.store.pipe(select(fromState.getClickAllowed));
-    this.cards$.subscribe((a) => console.log(a));
     this.store
       .pipe(
         select(fromState.getWinner),
@@ -58,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
         if (!isNullorUndefined(winner)) {
           this.openDialog(winner).subscribe((result) => {
             if (result) {
-              console.log('Play again!');
 
               this.store.dispatch(
                 new fromActions.Load(this.cardService.getGameCards())

@@ -1,14 +1,51 @@
-<div>
-  <p *ngIf="this.playersTurn">Player 1 - score: {{ player1Score }}</p>
-  <p *ngIf="!this.playersTurn">
-    <strong>Player 1 - score: {{ player1Score }}</strong>
-  </p>
-  <p *ngIf="!this.playersTurn">Player 2 - score: {{ player2Score }}</p>
-  <p *ngIf="this.playersTurn">
-    <strong>Player 2 - score: {{ player2Score }}</strong>
-  </p>
-  <p *ngIf="winner != null && winner != undefined">
-    Winner:
-    <span *ngIf="winner">Player 2</span><span *ngIf="!winner">Player 1</span>
-  </p>
+<div class="grid-container">
+  <mat-chip-list aria-label="Player turn">
+    <div *ngIf="this.playersTurn">
+      <mat-chip
+        color="accent"
+        matBadge="{{ player1Score }}"
+        matBadgePosition="before"
+        matBadgeColor="primary"
+      >
+        Player 1</mat-chip
+      >
+    </div>
+    <div *ngIf="!this.playersTurn">
+      <mat-chip
+        color="accent"
+        matBadge="{{ player1Score }}"
+        matBadgePosition="before"
+        matBadgeColor="primary"
+        selected
+        ><strong>Player 1</strong></mat-chip
+      >
+    </div>
+    <div *ngIf="!this.playersTurn">
+      <mat-chip
+        matBadge="{{ player2Score }}"
+        matBadgePosition="after"
+        matBadgeColor="primary"
+        color="accent"
+        >Player 2</mat-chip
+      >
+    </div>
+    <div *ngIf="this.playersTurn">
+      <mat-chip
+        matBadge="{{ player2Score }}"
+        matBadgePosition="after"
+        matBadgeColor="primary"
+        color="accent"
+        selected
+        ><strong>Player 2</strong></mat-chip
+      >
+    </div>
+    <div *ngIf="winner != null && winner != undefined">
+      <mat-chip
+        ><strong
+          >Winner: <span *ngIf="winner">Player 2</span
+          ><span *ngIf="!winner">Player 1</span></strong
+        ></mat-chip
+      >
+    </div></mat-chip-list
+  >
 </div>

@@ -1,11 +1,29 @@
-<app-players
-  [player1Score]="player1Score$ | async"
-  [player2Score]="player2Score$ | async"
-  [playersTurn]="playersTurn$ | async"
-  [winner]="winner$ | async"
-></app-players>
-<app-cardgrid
-  [cards]="cards$ | async"
-  [clickAllowed]="clickAllowed$ | async"
-  (flipped)="flipped($event)"
-></app-cardgrid>
+<div class="wrapper">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Concentration - Memory Card Game</span>
+      <span class="example-spacer"></span>
+      <a href="https://github.com/efronic/cardgame">
+        <mat-icon
+          class="example-icon"
+          aria-hidden="false"
+          aria-label="Example user verified icon"
+          style="color: white;"
+          >mood</mat-icon
+        ></a
+      >
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <app-players
+    [player1Score]="player1Score$ | async"
+    [player2Score]="player2Score$ | async"
+    [playersTurn]="playersTurn$ | async"
+    [winner]="winner$ | async"
+  ></app-players>
+  <app-cardgrid
+    [cards]="cards$ | async"
+    [clickAllowed]="clickAllowed$ | async"
+    (flipped)="flipped($event)"
+  ></app-cardgrid>
+  <a href="https://github.com/efronic/cardgame">Github</a>
+</div>

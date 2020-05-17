@@ -1,15 +1,10 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 100vh;
-  align-items: center;
-  justify-items: center; /* adjusted */
-}
+
 .grid-container {
   display: grid;
   width: 850px;
   height: 670px;
-  border: 3px solid black;
+  border: 3px solid #424242;
+  background-color: lightgrey;
   grid-template-columns: repeat(5, 150px);
   grid-template-rows: repeat(3, 200px);
   gap: 11px;

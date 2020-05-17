@@ -15,8 +15,12 @@ export class DialogService {
     });
     return dialogRef.afterClosed().pipe(
       map((result) => {
-        console.log('result from dialogservice: ', result);
-        return true;
+        if (result === false) {
+          return false;
+        }
+        if (result === true) {
+          return true;
+        }
       }),
       first()
     );

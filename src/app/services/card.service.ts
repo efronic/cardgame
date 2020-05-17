@@ -7,21 +7,12 @@ export class CardService {
   randomize() {
     var max = 50;
     this.cardNumbers = [];
-    // const min = 20;
     for (var i = 0; i < 8; i++) {
       var temp = Math.floor(Math.random() * max);
       if (this.cardNumbers.indexOf(temp) == -1) {
         this.cardNumbers.push(temp);
       } else i--;
     }
-    console.log(this.cardNumbers);
-
-    // while (this.cardNumbers.length < 8) {
-    //   const r = Math.floor(Math.random() * 16) + 1;
-    //   if (this.cardNumbers.indexOf(r) === -1) {
-    //     this.cardNumbers.push(r);
-    //   }
-    // }
   }
 
   getGameCards(): Card[] {

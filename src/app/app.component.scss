@@ -1,0 +1,12 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center; /* adjusted */
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.example-icon {
+  padding: 0 14px;
+}

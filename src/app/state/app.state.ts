@@ -25,10 +25,7 @@ export const initialState: AppState = {
 };
 const getState = createFeatureSelector<AppState>('cardGame');
 export const getCards = createSelector(getState, (state) => state.getCards);
-// export const getFlippedCards = createSelector(
-//   getState,
-//   (state) => state.getFlippedCards
-// );
+
 export const getCurrentPlayer = createSelector(
   getState,
   (state) => state.getCurrentPlayer

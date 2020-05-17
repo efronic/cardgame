@@ -20,12 +20,10 @@ export function AppReducer(state = initialState, action: AppActions): AppState {
     case ActionTypes.ToggleFlip:
       let flippedCard = action.payload;
       let stateCards = state.getCards;
-      // const existingCard = stateCards.find((p) => p.id == flippedCard.id);
       const firstTryout = isEven(stateCards.filter((p) => p.flipped).length);
       let updatedCards = state.getCards.map((item) =>
         action.payload.id === item.id ? action.payload : item
       );
-      // if first card to be flipped - there are even number of cards flipped in the array => this is the first next round card to be flipped
       if (firstTryout) {
         return {
           ...state,
@@ -34,7 +32,6 @@ export function AppReducer(state = initialState, action: AppActions): AppState {
           getNumberOfFlippedCards: 1,
           getFirstCardId: flippedCard.id,
         };
-        // if second card to be flipped - scoring happens here
       } else {
         return {
           ...state,
