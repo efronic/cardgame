@@ -10,6 +10,14 @@ See: [here](https://en.wikipedia.org/wiki/Concentration_(card_game))
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
+Some of the app's features:
+- Use of state management pattern - NgRx
+- Angular Material components
+- Container/Presentational components
+- CSS Grid
+- Flex Layout
+
+
 ## Prerequisites
 
 Install the latest version of Node from [here](https://nodejs.org).
